@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox  # Düzeltme: messagebox eklendi
+from tkinter import ttk, messagebox 
 import db
 
 
@@ -58,24 +58,20 @@ def ceza_goruntuleme_ac():
     uyeleri_yukle()
 
     def cezalar_yukle():
-        # Tabloyu temizle
         for r in tablo.get_children():
             tablo.delete(r)
 
-        # 1. KONTROL: Üye seçili mi?
         secilen_uye_metni = combo_uye.get()
         if not secilen_uye_metni:
             messagebox.showwarning("Uyarı", "Lütfen önce listeden bir üye seçiniz!")
             return
 
         try:
-            # "1 - Ali Veli" formatından ID'yi al
             uye_id = secilen_uye_metni.split(" - ")[0]
 
             conn = db.get_connection()
             cursor = conn.cursor()
 
-            # SQL Sorgusu
             cursor.execute("""
                 SELECT 
                     c.CezaID,
@@ -92,7 +88,6 @@ def ceza_goruntuleme_ac():
 
             sonuclar = cursor.fetchall()
             
-            # 2. KONTROL: Veri geldi mi?
             if not sonuclar:
                 messagebox.showinfo("Bilgi", "Bu üyeye ait kayıtlı ceza bulunamadı.")
             else:
