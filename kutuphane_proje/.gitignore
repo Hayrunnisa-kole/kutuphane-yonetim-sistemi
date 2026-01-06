@@ -1,0 +1,5 @@
+# Python derleme ve önbellek dosyaları
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
